@@ -1,0 +1,112 @@
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Poppins", sans-serif;
+				font-weight: 500;
+				-webkit-user-drag: none;
+				/* For Safari */
+				user-drag: none;
+			}
+
+			body {
+
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1.5rem;
+				padding: 1rem;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			h1 {
+				font-weight: 800;
+				color: #e5e5f7;
+				background-color: #2832F6;
+				padding: 1rem;
+				font-size: 2.5rem;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+			}
+
+			#container {
+				height: 40%;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 1rem;
+				gap: 4rem;
+				/* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
+			}
+
+			#sortable-list {
+				display: flex;
+				list-style-type: none;
+				border-radius: 8px;
+				width: 100%;
+				justify-content: center;
+				gap: .25rem;
+			}
+
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				cursor: grab;
+				width: 2.5rem;
+				height: 2.5rem;
+				background-color: #2832F6;
+				color: #e5e5f7;
+				border-radius: 4px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				font-size: 2rem;
+				padding: .5rem;
+			}
+
+			button {
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				border: solid 1px #2832F6;
+				font-size: 1.5rem;
+				padding: .25rem .5rem;
+				width: 100%;
+				cursor: pointer;
+				background-color: white;
+				color: #2832F6;
+				font-weight: 600;
+			}
+
+			.highlight-bg {
+				background-color: #e5e5f7;
+				color: #2832F6;
+				border: solid 2px #2832F6;
+
+			}
+
+			#clueBox {
+				background-color: #e5e5f7;
+				padding: 1rem;
+				border: solid 1px #2832F6;
+				text-align: center;
+				color: #2832F6;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+			}
+
+			#countdown {
+				font-size: 3rem !important;
+				color: #2832F6 !important;
+				background: none !important;
+				box-shadow: none !important;
+				padding: 0 !important;
+			}
+
+
+			:root {
+				background-color: #e5e5f7;
+				opacity: 0.8;
+				background-image: linear-gradient(#2832F6 1px, transparent 1px), linear-gradient(to right, #2832F6 1px, #e5e5f7 1px);
+				background-size: 20px 20px;
+			}
