@@ -7,25 +7,64 @@ new Sortable(document.getElementById('sortable-list'), {
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+let easyWords;
+let mediumWords;
+let hardWords;
+
+const easyBtn = document.getElementById('easyLevel');
+const midBtn = document.getElementById('midLevel');
+const hardBtn = document.getElementById('hardLevel');
+
+const introGame = document.getElementById('introGame');
+const playGame = document.getElementById('playGame');
 
 
+const container = document.getElementById('sortable-list');
+const submitBtn = document.getElementById('submitButton');
+const letterList = document.getElementById('sortable-list').childNodes;
+const scoreText = document.getElementById('countdown');
+
+let dict;
 let score = 0;
 
-function scrabbleWord(word) {
-    let shuffledWord = word; // Initialize with the original word
+let originalWord
+let scrabbledWord
 
-    // Keep generating a new random word until it's different from the original word
+// Function to fetch words data
+function fetchWordsData() {
+    fetch('./dict.json')
+        .then((response) => response.json())
+        .then((data) => {
+            easyWords = data.easy;
+            mediumWords = data.medium;
+            hardWords = data.hard;
+        })
+        .catch((error) => {
+            console.error('Error fetching JSON:', error);
+        });
+}
+
+window.onload = fetchWordsData;
+
+function startGame() {
+    originalWord = getRandomElementFromArray(dict).toUpperCase();
+    fetchWordDefinition(originalWord);
+    scrabbledWord = scrabbleWord(originalWord).toUpperCase();
+    splitStringAndCreateElements(scrabbledWord, container);
+}
+
+
+function scrabbleWord(word) {
+    let shuffledWord = word;
+
     while (shuffledWord === word) {
-        // Convert the word to an array of characters
         let letters = word.split('');
 
-        // Fisher-Yates shuffle algorithm
         for (let i = letters.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [letters[i], letters[j]] = [letters[j], letters[i]];
         }
 
-        // Join the shuffled letters back into a word
         shuffledWord = letters.join('');
     }
 
@@ -42,11 +81,7 @@ function getRandomElementFromArray(arr) {
     return arr[randomIndex];
 }
 
-let originalWord = getRandomElementFromArray(dict).toUpperCase();
 
-console.log(originalWord.toUpperCase());
-
-let scrabbledWord = scrabbleWord(originalWord).toUpperCase();
 fetchWordDefinition(originalWord);
 
 function splitStringAndCreateElements(str, parentElement) {
@@ -60,10 +95,9 @@ function splitStringAndCreateElements(str, parentElement) {
     });
 }
 
-const container = document.getElementById('sortable-list'); // Assuming there's an existing element with id 'container'
-splitStringAndCreateElements(scrabbledWord, container);
 
-const submitBtn = document.getElementById('submitButton');
+
+
 
 function getTextFromUl() {
     const ulId = 'sortable-list';
@@ -141,7 +175,7 @@ function getTextFromUl() {
     }
 }
 
-const letterList = document.getElementById('sortable-list').childNodes;
+
 
 letterList.forEach((item) => {
     item.addEventListener('pointerenter', () => {
@@ -206,12 +240,6 @@ function getNewWord() {
                 },
                 { scale: 1, duration: 0.25, stagger: 0.05, ease: 'expo.out' }
             );
-
-            // gsap.delayedCall(1, () => {
-
-            //     timeline4.reverse();
-
-            // });
         },
     });
 
@@ -229,6 +257,47 @@ function getNewWord() {
     originalWord = getRandomElementFromArray(dict).toUpperCase();
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
 
-    const scoreText = document.getElementById('countdown');
+
     scoreText.textContent = `Score: ${(score += 1)}`;
 }
+
+function easyLevel() {
+    introGame.style.display = 'none';
+    playGame.style.display = 'flex';
+    dict = easyWords;
+    console.log(dict);
+    startGame()
+}
+
+function midLevel() {
+    introGame.style.display = 'none';
+    playGame.style.display = 'flex';
+    dict = mediumWords;
+    console.log(dict);
+    startGame()
+}
+
+function hardLevel() {
+    introGame.style.display = 'none';
+    playGame.style.display = 'flex';
+    dict = hardWords;
+    console.log(dict);
+    startGame()
+}
+
+
+const lvlBtn = document.getElementById('chooseLever').childNodes
+
+const timeline3 = gsap.timeline({
+    onComplete: () => {
+        timeline3.reverse();
+    },
+});
+
+timeline3.to(lvlBtn, {
+    scale: 0.9,
+    duration: 0.1,
+    ease: 'expo.Out',
+});
+
+timeline3.play();
