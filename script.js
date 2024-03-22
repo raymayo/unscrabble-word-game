@@ -30,6 +30,8 @@ let score = 0;
 let originalWord
 let scrabbledWord
 
+let selectedElements = [];
+
 // Function to fetch words data
 function fetchWordsData() {
     fetch('./dict.json')
@@ -72,13 +74,21 @@ function scrabbleWord(word) {
 }
 
 function getRandomElementFromArray(arr) {
-    if (arr.length === 0) {
+    const availableElements = arr.filter(element => !selectedElements.includes(element));
+
+    if (availableElements.length === 0) {
+        // Reset selectedElements if all elements have been selected
+        selectedElements = [];
         return null;
     }
 
-    const randomIndex = Math.floor(Math.random() * arr.length);
+    const randomIndex = Math.floor(Math.random() * availableElements.length);
+    const randomElement = availableElements[randomIndex];
 
-    return arr[randomIndex];
+    // Add the selected element to the selectedElements array
+    selectedElements.push(randomElement);
+
+    return randomElement;
 }
 
 
@@ -210,6 +220,7 @@ function fetchWordDefinition(originalWord) {
                 console.log('No definitions found for the word.');
             } else {
                 // Get the first definition from the API response
+                console.log(data);
                 const firstDefinition =
                     data[0]?.meanings[0]?.definitions[0]?.definition;
                 console.log('Definition:', firstDefinition);
@@ -256,6 +267,7 @@ function getNewWord() {
 
     originalWord = getRandomElementFromArray(dict).toUpperCase();
     console.log(originalWord);
+    console.log(selectedElements);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
 
 
@@ -363,6 +375,12 @@ function pointer2() {
 
     timeline3.play();
 }
+
+const intialAni = gsap.timeline()
+intialAni.from('#title', { y: -100, opacity: 0, ease: 'expo.out' })
+intialAni.from('#introGame', { y: -100, opacity: 0, ease: 'expo.out' }, '<.25')
+intialAni.from('.ins', { y: -50, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
+intialAni.from('.lvlBtn', { y: -100, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
 
 
 
