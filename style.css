@@ -4,7 +4,12 @@
 				box-sizing: border-box;
 				font-family: "Poppins", sans-serif;
 				font-weight: 500;
-				-webkit-user-drag: none;
+				-webkit-user-select: none;
+				/* Safari */
+				-ms-user-select: none;
+				/* IE 10 and IE 11 */
+				user-select: none;
+				/* Standard syntax */
 			}
 
 			body {
@@ -82,6 +87,8 @@
 
 			.highlight-bg {
 				background-color: #e5e5f7;
+				opacity: 1;
+				background: repeating-linear-gradient(-45deg, #2832F6, #2832F6 5px, #e5e5f7 5px, #e5e5f7 25px);
 				color: #2832F6;
 				border: solid 2px #2832F6;
 
@@ -95,7 +102,7 @@
 				color: #2832F6;
 				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 				border-radius: 8px;
-				min-width: 100%;
+				/* min-width: 100%; */
 				min-height: fit-content;
 			}
 
@@ -176,6 +183,89 @@
 				background-size: 20px 20px;
 			}
 
-			/* :root {
-				background-color: #e5e5f7;
-			} */
+			@media screen and (min-width: 1000px) {
+
+				#instruction {
+					width: 60%;
+				}
+
+				#instruction>h2 {
+					font-size: 1.5rem;
+					color: #2832F6;
+					font-weight: 700;
+				}
+
+				#instruction>p {
+					color: #2832F6;
+					font-size: 1.5rem;
+				}
+
+				#playGame {
+					width: 80%;
+					font-size: 2rem;
+				}
+
+				li {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					text-align: center;
+					cursor: grab;
+					width: 3.5rem;
+					height: 3.5rem;
+					background-color: #2832F6;
+					color: #e5e5f7;
+					border-radius: 4px;
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+					font-size: 3rem;
+					padding: 1rem;
+				}
+
+
+				#submitButton {
+					font-size: 1.5rem;
+					padding: 1rem;
+					width: 40%;
+				}
+
+				#countdown {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 6rem !important;
+					color: #2832F6 !important;
+					background: #e5e5f7 !important;
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+					padding: 4rem !important;
+					width: 8rem;
+					height: 8rem;
+					border-radius: 100px;
+					border: solid 1px #2832F6;
+
+				}
+
+				h1 {
+					font-size: 4rem;
+				}
+
+				#chooseLevel {
+					gap: 1rem;
+					width: max(30%, 500px);
+				}
+
+				#chooseLevel>* {
+					font-size: 2rem;
+				}
+
+				#sortable-list {
+					gap: .5rem;
+				}
+
+				#clueBox {
+					font-size: 1.5rem;
+					width: 60%;
+				}
+
+
+
+			}

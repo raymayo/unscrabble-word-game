@@ -273,7 +273,7 @@ function easyLevel() {
 function transition() {
     const transitionTimeline = gsap.timeline();
     transitionTimeline.fromTo(introGame, { opacity: 1, display: 'flex', ease: 'expo.out' }, { x: -200, opacity: 0, display: 'none', ease: 'expo.out' })
-    transitionTimeline.fromTo(playGame, { display: 'none', x: 100, opacity: 0, ease: 'expo.out' }, { display: 'flex', x: 0, opacity: 1, ease: 'expo.out' })
+    transitionTimeline.fromTo(playGame, { display: 'none', x: 200, opacity: 0, ease: 'expo.out' }, { display: 'flex', x: 0, opacity: 1, ease: 'expo.out' })
 
 }
 
