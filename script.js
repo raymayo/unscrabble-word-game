@@ -255,49 +255,116 @@ function getNewWord() {
     timeline4.play();
 
     originalWord = getRandomElementFromArray(dict).toUpperCase();
+    console.log(originalWord);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
 
 
-    scoreText.textContent = `Score: ${(score += 1)}`;
+    scoreText.textContent = `${(score += 1)}`;
 }
 
 function easyLevel() {
-    introGame.style.display = 'none';
-    playGame.style.display = 'flex';
+
+    transition()
     dict = easyWords;
     console.log(dict);
     startGame()
 }
 
+function transition() {
+    const transitionTimeline = gsap.timeline();
+    transitionTimeline.fromTo(introGame, { opacity: 1, display: 'flex', ease: 'expo.out' }, { x: -200, opacity: 0, display: 'none', ease: 'expo.out' })
+    transitionTimeline.fromTo(playGame, { display: 'none', x: 100, opacity: 0, ease: 'expo.out' }, { display: 'flex', x: 0, opacity: 1, ease: 'expo.out' })
+
+}
+
 function midLevel() {
-    introGame.style.display = 'none';
-    playGame.style.display = 'flex';
+    transition()
     dict = mediumWords;
     console.log(dict);
     startGame()
 }
 
 function hardLevel() {
-    introGame.style.display = 'none';
-    playGame.style.display = 'flex';
+    transition()
     dict = hardWords;
     console.log(dict);
     startGame()
 }
 
 
-const lvlBtn = document.getElementById('chooseLever').childNodes
+const lvlBtn0 = document.querySelectorAll('.lvlBtn')[0]
+const lvlBtn1 = document.querySelectorAll('.lvlBtn')[1]
+const lvlBtn2 = document.querySelectorAll('.lvlBtn')[2]
 
-const timeline3 = gsap.timeline({
-    onComplete: () => {
-        timeline3.reverse();
-    },
-});
 
-timeline3.to(lvlBtn, {
-    scale: 0.9,
-    duration: 0.1,
-    ease: 'expo.Out',
-});
 
-timeline3.play();
+lvlBtn0.addEventListener('pointerdown', () => {
+    pointer0()
+})
+
+lvlBtn1.addEventListener('pointerdown', () => {
+    pointer1()
+})
+
+lvlBtn2.addEventListener('pointerdown', () => {
+    pointer2()
+})
+
+function pointer0() {
+    const timeline3 = gsap.timeline({
+        onComplete: () => {
+            timeline3.reverse();
+            easyLevel()
+
+        },
+    });
+
+    timeline3.to(lvlBtn0, {
+        scale: 0.9,
+        duration: 0.1,
+        ease: 'expo.Out',
+    });
+
+    timeline3.play();
+}
+
+function pointer1() {
+    const timeline3 = gsap.timeline({
+        onComplete: () => {
+            timeline3.reverse();
+            midLevel()
+
+        },
+    });
+
+    timeline3.to(lvlBtn1, {
+        scale: 0.9,
+        duration: 0.1,
+        ease: 'expo.Out',
+    });
+
+    timeline3.play();
+}
+
+function pointer2() {
+    const timeline3 = gsap.timeline({
+        onComplete: () => {
+            timeline3.reverse();
+            hardLevel()
+
+        },
+    });
+
+    timeline3.to(lvlBtn2, {
+        scale: 0.9,
+        duration: 0.1,
+        ease: 'expo.Out',
+    });
+
+    timeline3.play();
+}
+
+
+
+
+
