@@ -32,6 +32,8 @@ let scrabbledWord
 
 let selectedElements = [];
 
+let strikes = 0
+
 // Function to fetch words data
 function fetchWordsData() {
     fetch('./dict.json')
@@ -155,7 +157,7 @@ function getTextFromUl() {
         });
 
         timeline.to(letterList, {
-            backgroundColor: '#29CC52',
+            backgroundColor: '#1AFF05',
             y: -30,
             duration: 0.25,
             stagger: 0.05,
@@ -175,13 +177,31 @@ function getTextFromUl() {
         });
 
         timeline2.to(letterList, {
-            backgroundColor: '#BB2532',
+            backgroundColor: '#F50000',
             duration: 0.25,
             stagger: 0.05,
             ease: 'expo.Out',
         });
 
         timeline2.play();
+
+
+        strikes += 1;
+
+        switch (strikes) {
+            case 1:
+                gsap.to('#strike-1', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                break;
+            case 2:
+                gsap.to('#strike-2', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                break;
+            case 3:
+                gsap.to('#strike-3', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                break;
+            default:
+                return
+        }
+
     }
 }
 
@@ -271,7 +291,7 @@ function getNewWord() {
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
 
 
-    scoreText.textContent = `${(score += 1)}`;
+    scoreText.textContent = `Score: ${(score += 1)}`;
 }
 
 function easyLevel() {

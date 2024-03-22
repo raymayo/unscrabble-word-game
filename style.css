@@ -27,11 +27,11 @@
 
 			h1 {
 				font-weight: 800;
-				color: #e5e5f7;
-				background-color: #2832F6;
+				color: #FFFFFE;
+				background-color: #0648FF;
 				padding: 1rem;
 				font-size: 2.5rem;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				border-radius: 8px;
 			}
 
@@ -44,7 +44,6 @@
 				align-items: center;
 				padding: 1rem;
 				gap: 4rem;
-				/* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
 			}
 
 			#sortable-list {
@@ -64,43 +63,43 @@
 				cursor: grab;
 				width: 2.5rem;
 				height: 2.5rem;
-				background-color: #2832F6;
-				color: #e5e5f7;
-				border-radius: 4px;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				background-color: #0648FF;
+				color: #FFFFFE;
+				border-radius: 8px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				font-size: 2rem;
 				padding: .5rem;
 			}
 
 			button {
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-				border: solid 1px #2832F6;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+				border: none;
 				font-size: 1.5rem;
 				padding: .25rem .5rem;
 				width: 100%;
 				cursor: pointer;
-				background-color: white;
-				color: #2832F6;
+				background-color: #0648FF;
+				color: #FFFFFE;
 				font-weight: 600;
 				border-radius: 8px;
 			}
 
 			.highlight-bg {
-				background-color: #e5e5f7;
+				background-color: #E4E4E3;
 				opacity: 1;
-				background: repeating-linear-gradient(-45deg, #2832F6, #2832F6 6px, #e5e5f7 6px, #e5e5f7 15px);
-				color: #2832F6;
-				border: solid 2px #2832F6;
+				background: repeating-linear-gradient(-45deg, #0648FF, #0648FF 6px, #e5e5f7 6px, #e5e5f7 15px);
+				color: #0648FF;
+				border: solid 2px #0648FF;
 
 			}
 
 			#clueBox {
-				background-color: #e5e5f7;
+				background-color: #E4E4E3;
 				padding: 1rem;
-				border: solid 1px #2832F6;
+				/* border: solid 1px #0648FF; */
 				text-align: center;
-				color: #2832F6;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				color: black;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				border-radius: 8px;
 				/* min-width: 100%; */
 				min-height: fit-content;
@@ -110,22 +109,36 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: 3rem !important;
-				color: #2832F6 !important;
-				background: #e5e5f7 !important;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-				padding: 3rem !important;
+				font-size: 2rem !important;
+				color: #0648FF !important;
+				background: #E4E4E3 !important;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+				padding: 1rem !important;
+				border: solid 1px #0648FF;
+
+			}
+
+			#mistake {
+				display: flex;
+				gap: .5rem;
+			}
+
+			.mistakeBox {
 				width: 3rem;
 				height: 3rem;
-				border-radius: 100px;
-				border: solid 1px #2832F6;
-
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 8px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+				background-color: #E4E4E3;
+				color: #414141;
 			}
 
 			#playGame {
 				display: flex;
 				flex-direction: column;
-				justify-content: space-between;
+				justify-content: space-evenly;
 				align-items: center;
 				gap: 1.5rem;
 				width: 100%;
@@ -146,21 +159,21 @@
 			}
 
 			#instruction {
-				background-color: #e5e5f7;
+				background-color: #E4E4E3;
 				padding: 1rem;
 				border-radius: 8px;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				text-align: center;
-				border: solid 1px #2832F6;
+				/* border: solid 1px #0648FF; */
 			}
 
 			#instruction>h2 {
-				color: #2832F6;
+				color: #000000;
 				font-weight: 700;
 			}
 
 			#instruction>p {
-				color: #2832F6;
+				color: #000000;
 			}
 
 			#chooseLevel {
@@ -171,17 +184,37 @@
 			}
 
 			#chooseLevel>* {
-				background-color: #2832F6;
-				color: #e5e5f7;
+				background-color: #0648FF;
+				color: #FFFFFE;
 			}
 
 
 			:root {
-				background-color: #e5e5f7;
-				opacity: 0.8;
-				background-image: linear-gradient(#cdcddc 1px, transparent 1px), linear-gradient(to right, #cdcddc 1px, #e5e5f7 1px);
-				background-size: 20px 20px;
+				background-color: #FFFFFE;
+				opacity: 1;
+				background-size: 30px 30px;
+				background-image: repeating-linear-gradient(to right, #d8d8d8, #d8d8d8 1px, #FFFFFE 1px, #FFFFFE);
 			}
+
+			/* #countdown {
+				position: absolute;
+				top: 0;
+			} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			@media screen and (min-width: 1000px) {
 
@@ -191,12 +224,12 @@
 
 				#instruction>h2 {
 					font-size: 1.5rem;
-					color: #2832F6;
+					color: #0648FF;
 					font-weight: 700;
 				}
 
 				#instruction>p {
-					color: #2832F6;
+					color: #0648FF;
 					font-size: 1.5rem;
 				}
 
@@ -213,10 +246,10 @@
 					cursor: grab;
 					width: 3.5rem;
 					height: 3.5rem;
-					background-color: #2832F6;
+					background-color: #0648FF;
 					color: #e5e5f7;
-					border-radius: 4px;
-					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+					border-radius: 8px;
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 					font-size: 3rem;
 					padding: 1rem;
 				}
@@ -232,15 +265,12 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					font-size: 6rem !important;
-					color: #2832F6 !important;
+					font-size: 3rem !important;
+					color: #0648FF !important;
 					background: #e5e5f7 !important;
-					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 					padding: 4rem !important;
-					width: 8rem;
-					height: 8rem;
-					border-radius: 100px;
-					border: solid 1px #2832F6;
+					border: solid 1px #0648FF;
 
 				}
 
