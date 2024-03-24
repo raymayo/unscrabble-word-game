@@ -2,7 +2,7 @@ new Sortable(document.getElementById('sortable-list'), {
     animation: 250, // Set animation duration (in milliseconds)
     swapThreshold: 1,
     ghostClass: 'highlight-bg',
-    // swap: true, 
+    // swap: true,
     // swapClass: 'highlight-bg',
 });
 
@@ -20,7 +20,6 @@ const hardBtn = document.getElementById('hardLevel');
 const introGame = document.getElementById('introGame');
 const playGame = document.getElementById('playGame');
 
-
 const container = document.getElementById('sortable-list');
 const submitBtn = document.getElementById('submitButton');
 const letterList = document.getElementById('sortable-list').childNodes;
@@ -29,16 +28,19 @@ const scoreText = document.getElementById('countdown');
 let dict;
 let score = 0;
 
-let originalWord
-let scrabbledWord
+let originalWord;
+let scrabbledWord;
+
+let selectedWord
+let wordDef
 
 let selectedElements = [];
 
-let strikes = 0
+let strikes = 0;
 
 // Function to fetch words data
 function fetchWordsData() {
-    fetch('./dict.json')
+    fetch('./dict2.json')
         .then((response) => response.json())
         .then((data) => {
             easyWords = data.easy;
@@ -53,12 +55,14 @@ function fetchWordsData() {
 window.onload = fetchWordsData;
 
 function startGame() {
-    originalWord = getRandomElementFromArray(dict).toUpperCase();
-    fetchWordDefinition(originalWord);
+    // originalWord = getRandomElementFromArray(dict).toUpperCase();
+    selectedWord = getRandomElementFromArray(dict);
+    originalWord = selectedWord.word.toUpperCase()
+    wordDef = selectedWord.definition;
+    fetchWordDefinition(wordDef);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
     splitStringAndCreateElements(scrabbledWord, container);
 }
-
 
 function scrabbleWord(word) {
     let shuffledWord = word;
@@ -78,7 +82,9 @@ function scrabbleWord(word) {
 }
 
 function getRandomElementFromArray(arr) {
-    const availableElements = arr.filter(element => !selectedElements.includes(element));
+    const availableElements = arr.filter(
+        (element) => !selectedElements.includes(element)
+    );
 
     if (availableElements.length === 0) {
         // Reset selectedElements if all elements have been selected
@@ -91,10 +97,10 @@ function getRandomElementFromArray(arr) {
 
     // Add the selected element to the selectedElements array
     selectedElements.push(randomElement);
+    console.log(randomElement);
 
     return randomElement;
 }
-
 
 fetchWordDefinition(originalWord);
 
@@ -108,10 +114,6 @@ function splitStringAndCreateElements(str, parentElement) {
         parentElement.appendChild(letterElement);
     });
 }
-
-
-
-
 
 function getTextFromUl() {
     const ulId = 'sortable-list';
@@ -192,27 +194,35 @@ function getTextFromUl() {
 
         timeline2.play();
 
-
         strikes += 1;
 
         switch (strikes) {
             case 1:
-                gsap.to('#strike-1', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
+                gsap.to('#strike-1', {
+                    borderColor: '#D72638',
+                    color: '#D72638',
+                    ease: 'expo.out',
+                });
                 break;
             case 2:
-                gsap.to('#strike-2', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
+                gsap.to('#strike-2', {
+                    borderColor: '#D72638',
+                    color: '#D72638',
+                    ease: 'expo.out',
+                });
                 break;
             case 3:
-                gsap.to('#strike-3', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
+                gsap.to('#strike-3', {
+                    borderColor: '#D72638',
+                    color: '#D72638',
+                    ease: 'expo.out',
+                });
                 break;
             default:
-                return
+                return;
         }
-
     }
 }
-
-
 
 letterList.forEach((item) => {
     item.addEventListener('pointerenter', () => {
@@ -235,57 +245,28 @@ letterList.forEach((item) => {
     });
 });
 
-function fetchWordDefinition(originalWord) {
-    const word = originalWord;
+function fetchWordDefinition(definition) {
+    const word = definition;
     const clueP = document.getElementById('clueP');
 
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        .then((response) => response.json())
-        .then((data) => {
-            // Check if the API returned a valid response
-            if (data.title && data.title === 'No Definitions Found') {
-                console.log('No definitions found for the word.');
-            } else {
-
-
-
-                // Get the first definition from the API response
-                console.log(data);
-                const firstDefinition =
-                    data[0]?.meanings[0]?.definitions[0]?.definition;
-                console.log('Definition:', firstDefinition);
-
-                clueP.textContent = firstDefinition;
-
-            }
-        })
-        .catch((error) => {
-            console.error('Error fetching definition:', error);
-        });
+    clueP.textContent = word;
 }
 
 function getNewWord() {
     const timeline4 = gsap.timeline({
         onComplete: () => {
-            // Reverse the animation after a delay
             container.innerHTML = '';
             splitStringAndCreateElements(scrabbledWord, container);
-            // gsap.fromTo('#clueBox', { opacity: 0, x: -100, ease: 'expo.out' }, { opacity: 1, x: 0, ease: 'expo.out', delay: .5 })
-
 
             const clueTimeline = gsap.timeline({
                 onComplete: () => {
-                    fetchWordDefinition(originalWord);
-
-
-                    gsap.delayedCall(0.25, () => {
-                        clueTimeline.reverse();
-                    });
-
+                    wordDef = selectedWord.definition;
+                    fetchWordDefinition(wordDef);
+                    clueTimeline.reverse();
                 },
             });
 
-            clueTimeline.to("#clueP", {
+            clueTimeline.to('#clueP', {
                 opacity: 0,
                 duration: 0.5,
                 ease: 'expo.Out',
@@ -293,11 +274,9 @@ function getNewWord() {
 
             clueTimeline.play();
 
-
             gsap.fromTo(
                 letterList,
                 {
-                    // backgroundColor: "e5e5f7",
                     scale: 0,
                     duration: 0.25,
                     stagger: 0.05,
@@ -310,7 +289,6 @@ function getNewWord() {
     });
 
     timeline4.to(letterList, {
-        // backgroundColor: "e5e5f7",
         scale: 0,
         duration: 0.25,
         stagger: 0.05,
@@ -320,13 +298,13 @@ function getNewWord() {
 
     timeline4.play();
 
-    originalWord = getRandomElementFromArray(dict).toUpperCase();
+
+
+    selectedWord = getRandomElementFromArray(dict);
+    originalWord = selectedWord.word.toUpperCase()
     console.log(originalWord);
     console.log(selectedElements);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
-    // gsap.to('#clueBox', { opacity: 0, x: 100, ease: 'expo.out', delay: .8 })
-
-
 
     const scoreTimeline = gsap.timeline({
         onComplete: () => {
@@ -338,69 +316,95 @@ function getNewWord() {
     scoreTimeline.to(scoreText, {
         scale: 1.4,
         color: '#5EFC8D',
-        duration: .5,
+        duration: 0.5,
         ease: 'expo.out',
     });
-
-
 
     scoreTimeline.play();
 }
 
 function easyLevel() {
-
-    transition()
+    transition();
     dict = easyWords;
     console.log(dict);
-    startGame()
+    startGame();
 }
 
 function transition() {
     const transitionTimeline = gsap.timeline();
-    transitionTimeline.fromTo(introGame, { opacity: 1, display: 'flex', ease: 'expo.out' }, { x: -200, opacity: 0, display: 'none', ease: 'expo.out' })
-    transitionTimeline.fromTo(playGame, { display: 'none', x: 200, opacity: 0, ease: 'expo.out' }, { display: 'flex', x: 0, opacity: 1, ease: 'expo.out' })
-
+    transitionTimeline.fromTo(
+        introGame,
+        { opacity: 1, display: 'flex', ease: 'expo.out' },
+        { x: -200, opacity: 0, display: 'none', ease: 'expo.out' }
+    );
+    transitionTimeline.fromTo(
+        playGame,
+        { display: 'none', x: 200, opacity: 0, ease: 'expo.out' },
+        { display: 'flex', x: 0, opacity: 1, ease: 'expo.out' }
+    );
 }
 
 function midLevel() {
-    transition()
+    transition();
     dict = mediumWords;
     console.log(dict);
-    startGame()
+    startGame();
 }
 
 function hardLevel() {
-    transition()
+    transition();
     dict = hardWords;
     console.log(dict);
-    startGame()
+    startGame();
 }
 
 
-const lvlBtn0 = document.querySelectorAll('.lvlBtn')[0]
-const lvlBtn1 = document.querySelectorAll('.lvlBtn')[1]
-const lvlBtn2 = document.querySelectorAll('.lvlBtn')[2]
+
+
+
+
+
+
+
+const lvlBtn0 = document.querySelectorAll('.lvlBtn')[0];
+const lvlBtn1 = document.querySelectorAll('.lvlBtn')[1];
+const lvlBtn2 = document.querySelectorAll('.lvlBtn')[2];
+
+
+
+
 
 
 
 lvlBtn0.addEventListener('pointerdown', () => {
-    pointer0()
-})
+    pointer0();
+});
 
 lvlBtn1.addEventListener('pointerdown', () => {
-    pointer1()
-})
+    pointer1();
+});
 
 lvlBtn2.addEventListener('pointerdown', () => {
-    pointer2()
-})
+    pointer2();
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 function pointer0() {
     const timeline3 = gsap.timeline({
         onComplete: () => {
             timeline3.reverse();
-            easyLevel()
-
+            easyLevel();
         },
     });
 
@@ -415,12 +419,20 @@ function pointer0() {
     timeline3.play();
 }
 
+
+
+
+
+
+
+
+
+
 function pointer1() {
     const timeline3 = gsap.timeline({
         onComplete: () => {
             timeline3.reverse();
-            midLevel()
-
+            midLevel();
         },
     });
 
@@ -435,12 +447,18 @@ function pointer1() {
     timeline3.play();
 }
 
+
+
+
+
+
+
+
 function pointer2() {
     const timeline3 = gsap.timeline({
         onComplete: () => {
             timeline3.reverse();
-            hardLevel()
-
+            hardLevel();
         },
     });
 
@@ -455,15 +473,32 @@ function pointer2() {
     timeline3.play();
 }
 
-const intialAni = gsap.timeline()
-intialAni.from('#title', { y: -100, opacity: 0, ease: 'expo.out' })
-intialAni.from('#introGame', { y: -100, opacity: 0, ease: 'expo.out' }, '<.25')
-intialAni.from('.ins', { y: -50, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
-intialAni.from('.lvlBtn', { y: -100, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
-
-gsap.to('.fa-spinner', { rotation: 360, duration: 1, repeat: -1, ease: 'none' })
 
 
 
 
 
+
+
+
+
+const intialAni = gsap.timeline();
+intialAni.from('#title', { y: -100, opacity: 0, ease: 'expo.out' });
+intialAni.from('#introGame', { y: -100, opacity: 0, ease: 'expo.out' }, '<.25');
+intialAni.from(
+    '.ins',
+    { y: -50, opacity: 0, ease: 'expo.out', stagger: 0.1 },
+    '<.5'
+);
+intialAni.from(
+    '.lvlBtn',
+    { y: -100, opacity: 0, ease: 'expo.out', stagger: 0.1 },
+    '<.5'
+);
+
+gsap.to('.fa-spinner', {
+    rotation: 360,
+    duration: 1,
+    repeat: -1,
+    ease: 'none',
+});
