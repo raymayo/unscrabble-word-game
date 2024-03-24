@@ -16,7 +16,6 @@
 				--main-color: #5983FF;
 				--bg-color: #071013;
 				--neutral: #e6e9ff;
-				overflow: hidden;
 			}
 
 			body {
@@ -26,7 +25,7 @@
 				justify-content: flex-start;
 				align-items: center;
 				gap: 1.5rem;
-				padding: 1rem;
+				padding: 2rem;
 				width: 100vw;
 				height: 100vh;
 				height: calc(var(--vh, 1vh) * 100);
@@ -37,8 +36,8 @@
 				font-weight: 800;
 				color: var(--main-color);
 				padding: 1rem;
-				font-size: 2.5rem;
-				border-radius: 8px;
+				font-size: 3rem;
+				border-radius: 6px;
 			}
 
 			#container {
@@ -55,7 +54,7 @@
 			#sortable-list {
 				display: flex;
 				list-style-type: none;
-				border-radius: 8px;
+				border-radius: 6px;
 				width: 100%;
 				justify-content: center;
 				gap: .25rem;
@@ -72,7 +71,7 @@
 				background-color: var(--bg-color);
 				color: var(--main-color);
 				border: solid 1px var(--main-color);
-				border-radius: 8px;
+				border-radius: 6px;
 				font-size: 2rem;
 				padding: .5rem;
 			}
@@ -87,15 +86,15 @@
 				color: var(--main-color);
 				border: solid 1px var(--main-color);
 				font-weight: 600;
-				border-radius: 8px;
+				border-radius: 6px;
 			}
 
 			.highlight-bg {
 				background-color: var(--bg-color);
 				opacity: 1;
-				background: repeating-linear-gradient(-45deg, var(--main-color), var(--main-color) 6px, var(--bg-color) 6px, var(--bg-color) 15px);
+				background: repeating-linear-gradient(-45deg, var(--main-color), var(--main-color) 1px, var(--bg-color) 1px, var(--bg-color) 8px);
 				color: var(--main-color);
-				border: solid 2px var(--main-color);
+				border: solid 1px var(--main-color);
 
 			}
 
@@ -109,23 +108,13 @@
 				border: solid 1px var(--main-color);
 				text-align: center;
 				color: var(--main-color);
-				border-radius: 8px;
+				border-radius: 6px;
 				min-width: 100%;
 				min-height: 160px;
 				max-height: fit-content;
+				overflow-y: scroll;
 			}
 
-			#countdown {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 2rem !important;
-				color: var(--main-color) !important;
-				background: #E4E4E3 !important;
-				padding: 1rem !important;
-				border: solid 1px var(--main-color);
-
-			}
 
 			#mistake {
 				display: flex;
@@ -138,7 +127,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				border-radius: 8px;
+				border-radius: 6px;
 				background-color: var(--bg-color);
 				color: var(--main-color);
 				border: solid 1px var(--main-color);
@@ -170,7 +159,7 @@
 			#instruction {
 				background-color: var(--bg-color);
 				padding: 1rem;
-				border-radius: 8px;
+				border-radius: 6px;
 				text-align: center;
 				color: var(--main-color);
 				border: solid 1px var(--main-color);
@@ -195,16 +184,35 @@
 				background-color: var(--bg-color);
 				opacity: 1;
 				background-size: 30px 30px;
-				/* background-image: repeating-linear-gradient(to right, #d8d8d8, #d8d8d8 1px, #FFFFFE 1px, #FFFFFE); */
 			}
-
-			/* #countdown {
-				position: absolute;
-				top: 0;
-			} */
 
 			.fa-spinner {
 				font-size: 2.5rem;
+			}
+
+
+			#scoreboard {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border: solid 1px var(--main-color);
+				padding: .5rem;
+				width: 50%;
+				color: var(--main-color);
+				border-radius: 6px;
+
+				h2 {
+					font-size: 1.5rem;
+					/* border: solid 1px red; */
+				}
+
+				h1 {
+					/* border: solid 1px red; */
+					font-size: 4rem;
+					padding: 0;
+					margin: 0;
+				}
 			}
 
 
@@ -252,7 +260,7 @@
 					cursor: grab;
 					width: 3.5rem;
 					height: 3.5rem;
-					border-radius: 8px;
+					border-radius: 6px;
 					font-size: 3rem;
 					padding: 1rem;
 				}
@@ -262,18 +270,6 @@
 					font-size: 1.5rem;
 					padding: 1rem;
 					width: 40%;
-				}
-
-				#countdown {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					font-size: 3rem !important;
-					color: var(--main-color) !important;
-					background: #e5e5f7 !important;
-					padding: 4rem !important;
-					border: solid 1px var(--main-color);
-
 				}
 
 				h1 {

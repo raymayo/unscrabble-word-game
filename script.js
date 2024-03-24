@@ -2,6 +2,8 @@ new Sortable(document.getElementById('sortable-list'), {
     animation: 250, // Set animation duration (in milliseconds)
     swapThreshold: 1,
     ghostClass: 'highlight-bg',
+    // swap: true, 
+    // swapClass: 'highlight-bg',
 });
 
 let vh = window.innerHeight * 0.01;
@@ -159,9 +161,9 @@ function getTextFromUl() {
         });
 
         timeline.to(letterList, {
-            borderColor: '#5AFF15',
+            borderColor: '#5EFC8D',
             backgroundColor: '#071013',
-            color: '#5AFF15',
+            color: '#5EFC8D',
             y: -30,
             duration: 0.25,
             stagger: 0.05,
@@ -244,12 +246,17 @@ function fetchWordDefinition(originalWord) {
             if (data.title && data.title === 'No Definitions Found') {
                 console.log('No definitions found for the word.');
             } else {
+
+
+
                 // Get the first definition from the API response
                 console.log(data);
                 const firstDefinition =
                     data[0]?.meanings[0]?.definitions[0]?.definition;
                 console.log('Definition:', firstDefinition);
+
                 clueP.textContent = firstDefinition;
+
             }
         })
         .catch((error) => {
@@ -263,8 +270,28 @@ function getNewWord() {
             // Reverse the animation after a delay
             container.innerHTML = '';
             splitStringAndCreateElements(scrabbledWord, container);
-            gsap.fromTo('#clueBox', { opacity: 0, x: -100, ease: 'expo.out' }, { opacity: 1, x: 0, ease: 'expo.out', delay: .5 })
-            fetchWordDefinition(originalWord);
+            // gsap.fromTo('#clueBox', { opacity: 0, x: -100, ease: 'expo.out' }, { opacity: 1, x: 0, ease: 'expo.out', delay: .5 })
+
+
+            const clueTimeline = gsap.timeline({
+                onComplete: () => {
+                    fetchWordDefinition(originalWord);
+
+
+                    gsap.delayedCall(0.25, () => {
+                        clueTimeline.reverse();
+                    });
+
+                },
+            });
+
+            clueTimeline.to("#clueP", {
+                opacity: 0,
+                duration: 0.5,
+                ease: 'expo.Out',
+            });
+
+            clueTimeline.play();
 
 
             gsap.fromTo(
@@ -297,10 +324,27 @@ function getNewWord() {
     console.log(originalWord);
     console.log(selectedElements);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
-    gsap.to('#clueBox', { opacity: 0, x: 100, ease: 'expo.out', delay: .5 })
+    // gsap.to('#clueBox', { opacity: 0, x: 100, ease: 'expo.out', delay: .8 })
 
 
-    scoreText.textContent = `Score: ${(score += 1)}`;
+
+    const scoreTimeline = gsap.timeline({
+        onComplete: () => {
+            scoreText.textContent = `${(score += 1)}`;
+            scoreTimeline.reverse();
+        },
+    });
+
+    scoreTimeline.to(scoreText, {
+        scale: 1.4,
+        color: '#5EFC8D',
+        duration: .5,
+        ease: 'expo.out',
+    });
+
+
+
+    scoreTimeline.play();
 }
 
 function easyLevel() {
