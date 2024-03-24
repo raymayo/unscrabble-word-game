@@ -138,6 +138,8 @@ function getTextFromUl() {
 
     timeline3.to(submitBtn, {
         scale: 0.9,
+        backgroundColor: '#5983FF',
+        color: '#071013',
         duration: 0.1,
         ease: 'expo.Out',
     });
@@ -157,7 +159,9 @@ function getTextFromUl() {
         });
 
         timeline.to(letterList, {
-            backgroundColor: '#1AFF05',
+            borderColor: '#5AFF15',
+            backgroundColor: '#071013',
+            color: '#5AFF15',
             y: -30,
             duration: 0.25,
             stagger: 0.05,
@@ -177,7 +181,8 @@ function getTextFromUl() {
         });
 
         timeline2.to(letterList, {
-            backgroundColor: '#F50000',
+            borderColor: '#D72638',
+            color: '#D72638',
             duration: 0.25,
             stagger: 0.05,
             ease: 'expo.Out',
@@ -190,13 +195,13 @@ function getTextFromUl() {
 
         switch (strikes) {
             case 1:
-                gsap.to('#strike-1', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                gsap.to('#strike-1', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
                 break;
             case 2:
-                gsap.to('#strike-2', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                gsap.to('#strike-2', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
                 break;
             case 3:
-                gsap.to('#strike-3', { backgroundColor: '#F50000', color: 'white', ease: 'expo.out' })
+                gsap.to('#strike-3', { borderColor: '#D72638', color: '#D72638', ease: 'expo.out' })
                 break;
             default:
                 return
@@ -210,7 +215,7 @@ function getTextFromUl() {
 letterList.forEach((item) => {
     item.addEventListener('pointerenter', () => {
         gsap.to(item, {
-            color: '#2832F6',
+            color: '#5983FF',
             backgroundColor: '#e5e5f7',
 
             duration: 0.25,
@@ -220,7 +225,7 @@ letterList.forEach((item) => {
 
     item.addEventListener('pointerleave', () => {
         gsap.to(item, {
-            backgroundColor: '#2832F6',
+            backgroundColor: '#5983FF',
             color: '#e5e5f7',
             duration: 0.25,
             ease: 'expo.Out',
@@ -258,7 +263,10 @@ function getNewWord() {
             // Reverse the animation after a delay
             container.innerHTML = '';
             splitStringAndCreateElements(scrabbledWord, container);
+            gsap.fromTo('#clueBox', { opacity: 0, x: -100, ease: 'expo.out' }, { opacity: 1, x: 0, ease: 'expo.out', delay: .5 })
             fetchWordDefinition(originalWord);
+
+
             gsap.fromTo(
                 letterList,
                 {
@@ -289,6 +297,7 @@ function getNewWord() {
     console.log(originalWord);
     console.log(selectedElements);
     scrabbledWord = scrabbleWord(originalWord).toUpperCase();
+    gsap.to('#clueBox', { opacity: 0, x: 100, ease: 'expo.out', delay: .5 })
 
 
     scoreText.textContent = `Score: ${(score += 1)}`;
@@ -353,6 +362,8 @@ function pointer0() {
 
     timeline3.to(lvlBtn0, {
         scale: 0.9,
+        backgroundColor: '#5983FF',
+        color: '#071013',
         duration: 0.1,
         ease: 'expo.Out',
     });
@@ -371,6 +382,8 @@ function pointer1() {
 
     timeline3.to(lvlBtn1, {
         scale: 0.9,
+        backgroundColor: '#5983FF',
+        color: '#071013',
         duration: 0.1,
         ease: 'expo.Out',
     });
@@ -389,6 +402,8 @@ function pointer2() {
 
     timeline3.to(lvlBtn2, {
         scale: 0.9,
+        backgroundColor: '#5983FF',
+        color: '#071013',
         duration: 0.1,
         ease: 'expo.Out',
     });
@@ -401,6 +416,8 @@ intialAni.from('#title', { y: -100, opacity: 0, ease: 'expo.out' })
 intialAni.from('#introGame', { y: -100, opacity: 0, ease: 'expo.out' }, '<.25')
 intialAni.from('.ins', { y: -50, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
 intialAni.from('.lvlBtn', { y: -100, opacity: 0, ease: 'expo.out', stagger: 0.1 }, '<.5')
+
+gsap.to('.fa-spinner', { rotation: 360, duration: 1, repeat: -1, ease: 'none' })
 
 
 

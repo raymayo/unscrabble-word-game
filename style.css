@@ -12,6 +12,13 @@
 				/* Standard syntax */
 			}
 
+			:root {
+				--main-color: #5983FF;
+				--bg-color: #071013;
+				--neutral: #e6e9ff;
+				overflow: hidden;
+			}
+
 			body {
 
 				display: flex;
@@ -23,15 +30,14 @@
 				width: 100vw;
 				height: 100vh;
 				height: calc(var(--vh, 1vh) * 100);
+				overflow: hidden;
 			}
 
 			h1 {
 				font-weight: 800;
-				color: #FFFFFE;
-				background-color: #0648FF;
+				color: var(--main-color);
 				padding: 1rem;
 				font-size: 2.5rem;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				border-radius: 8px;
 			}
 
@@ -63,46 +69,50 @@
 				cursor: grab;
 				width: 2.5rem;
 				height: 2.5rem;
-				background-color: #0648FF;
-				color: #FFFFFE;
+				background-color: var(--bg-color);
+				color: var(--main-color);
+				border: solid 1px var(--main-color);
 				border-radius: 8px;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				font-size: 2rem;
 				padding: .5rem;
 			}
 
 			button {
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				border: none;
 				font-size: 1.5rem;
 				padding: .25rem .5rem;
 				width: 100%;
 				cursor: pointer;
-				background-color: #0648FF;
-				color: #FFFFFE;
+				background-color: var(--bg-color);
+				color: var(--main-color);
+				border: solid 1px var(--main-color);
 				font-weight: 600;
 				border-radius: 8px;
 			}
 
 			.highlight-bg {
-				background-color: #E4E4E3;
+				background-color: var(--bg-color);
 				opacity: 1;
-				background: repeating-linear-gradient(-45deg, #0648FF, #0648FF 6px, #e5e5f7 6px, #e5e5f7 15px);
-				color: #0648FF;
-				border: solid 2px #0648FF;
+				background: repeating-linear-gradient(-45deg, var(--main-color), var(--main-color) 6px, var(--bg-color) 6px, var(--bg-color) 15px);
+				color: var(--main-color);
+				border: solid 2px var(--main-color);
 
 			}
 
 			#clueBox {
-				background-color: #E4E4E3;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background-color: var(--bg-color);
 				padding: 1rem;
-				/* border: solid 1px #0648FF; */
+				border: solid 1px var(--main-color);
 				text-align: center;
-				color: black;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+				color: var(--main-color);
 				border-radius: 8px;
-				/* min-width: 100%; */
-				min-height: fit-content;
+				min-width: 100%;
+				min-height: 160px;
+				max-height: fit-content;
 			}
 
 			#countdown {
@@ -110,11 +120,10 @@
 				align-items: center;
 				justify-content: center;
 				font-size: 2rem !important;
-				color: #0648FF !important;
+				color: var(--main-color) !important;
 				background: #E4E4E3 !important;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				padding: 1rem !important;
-				border: solid 1px #0648FF;
+				border: solid 1px var(--main-color);
 
 			}
 
@@ -130,9 +139,9 @@
 				align-items: center;
 				justify-content: center;
 				border-radius: 8px;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-				background-color: #E4E4E3;
-				color: #414141;
+				background-color: var(--bg-color);
+				color: var(--main-color);
+				border: solid 1px var(--main-color);
 			}
 
 			#playGame {
@@ -159,22 +168,14 @@
 			}
 
 			#instruction {
-				background-color: #E4E4E3;
+				background-color: var(--bg-color);
 				padding: 1rem;
 				border-radius: 8px;
-				box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 				text-align: center;
-				/* border: solid 1px #0648FF; */
+				color: var(--main-color);
+				border: solid 1px var(--main-color);
 			}
 
-			#instruction>h2 {
-				color: #000000;
-				font-weight: 700;
-			}
-
-			#instruction>p {
-				color: #000000;
-			}
 
 			#chooseLevel {
 				display: flex;
@@ -184,22 +185,27 @@
 			}
 
 			#chooseLevel>* {
-				background-color: #0648FF;
-				color: #FFFFFE;
+				background-color: var(--bg-color);
+				color: var(--main-color);
+				border: solid 1px var(--main-color);
 			}
 
 
 			:root {
-				background-color: #FFFFFE;
+				background-color: var(--bg-color);
 				opacity: 1;
 				background-size: 30px 30px;
-				background-image: repeating-linear-gradient(to right, #d8d8d8, #d8d8d8 1px, #FFFFFE 1px, #FFFFFE);
+				/* background-image: repeating-linear-gradient(to right, #d8d8d8, #d8d8d8 1px, #FFFFFE 1px, #FFFFFE); */
 			}
 
 			/* #countdown {
 				position: absolute;
 				top: 0;
 			} */
+
+			.fa-spinner {
+				font-size: 2.5rem;
+			}
 
 
 
@@ -224,12 +230,12 @@
 
 				#instruction>h2 {
 					font-size: 1.5rem;
-					color: #0648FF;
+					color: var(--main-color);
 					font-weight: 700;
 				}
 
 				#instruction>p {
-					color: #0648FF;
+					color: var(--main-color);
 					font-size: 1.5rem;
 				}
 
@@ -246,10 +252,7 @@
 					cursor: grab;
 					width: 3.5rem;
 					height: 3.5rem;
-					background-color: #0648FF;
-					color: #e5e5f7;
 					border-radius: 8px;
-					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 					font-size: 3rem;
 					padding: 1rem;
 				}
@@ -266,11 +269,10 @@
 					align-items: center;
 					justify-content: center;
 					font-size: 3rem !important;
-					color: #0648FF !important;
+					color: var(--main-color) !important;
 					background: #e5e5f7 !important;
-					box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 					padding: 4rem !important;
-					border: solid 1px #0648FF;
+					border: solid 1px var(--main-color);
 
 				}
 
