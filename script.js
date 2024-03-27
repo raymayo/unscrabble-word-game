@@ -1,9 +1,9 @@
 new Sortable(document.getElementById('sortable-list'), {
-    animation: 250, // Set animation duration (in milliseconds)
+    animation: 300, // Set animation duration (in milliseconds)
     swapThreshold: 1,
-    ghostClass: 'highlight-bg',
-    // swap: true,
-    // swapClass: 'highlight-bg',
+   // ghostClass: 'highlight-bg',
+     swap: true,
+     swapClass: 'highlight-bg',
 });
 
 let vh = window.innerHeight * 0.01;
