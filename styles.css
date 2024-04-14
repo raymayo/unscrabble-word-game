@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px red;
+
+    li {
+        border: solid 1px red;
+        padding: 1rem;
+        list-style-type: none;
+    }
+}
+
+#sort-group-1 {
+    width: 70%;
+    height: 4rem;
+}
+
+#sort-group-2 {
+    width: 70%;
+    height: 4rem;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+
+}
+
+#btnContainer {
+    display: flex;
+    gap: 1rem;
+}
